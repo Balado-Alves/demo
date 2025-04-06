@@ -26,7 +26,7 @@ def calculate_demographic_data(print_data=True):
 
     # percentage with salary >50K
     higher_education_rich = round(100*len(df[(higher_education) & (df['salary']=='>50K') ])/len(df[higher_education]),1)
-    lower_education_rich = round(100*len(df[(lower_education) & (df['salary']=='>50K') ])/len(df[higher_education]),1)
+    lower_education_rich = round(100*len(df[(lower_education) & (df['salary']=='>50K') ])/len(df[lower_education]),1)
     #print(higher_education_rich)
     #print(df[higher_education].head())
 
@@ -41,11 +41,14 @@ def calculate_demographic_data(print_data=True):
     #print(num_min_workers)caca
 
     # What country has the highest percentage of people that earn >50K?
-    highest_earning_country = df.loc[df['salary']=='>50K', 'native-country']
-    highest_earning_country_percentage = None
+    highest_earning_country = round(100*(df.loc[df['salary']=='>50K', 'native-country'].value_counts())/(df['native-country'].value_counts()),1).idxmax()
+    highest_earning_country_percentage = round(100*(df.loc[df['salary']=='>50K', 'native-country'].value_counts())/(df['native-country'].value_counts()),1).max()
+    #print(round(100*(df.loc[df['salary']=='>50K', 'native-country'].value_counts())/(df['native-country'].value_counts()),1))
 
     # Identify the most popular occupation for those who earn >50K in India.
-    top_IN_occupation = None
+    top_IN_occupation = df[(df['native-country']=='India') & (df['salary']=='>50K')]['occupation'].value_counts().idxmax()
+    #mask=df[(df['native-country']=='India') & (df['salary']=='>50K')]
+    #print(mask['occupation'].value_counts().idxmax())
 
     # DO NOT MODIFY BELOW THIS LINE
 
