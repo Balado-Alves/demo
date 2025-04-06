@@ -38,7 +38,7 @@ def calculate_demographic_data(print_data=True):
     #print(num_min_workers)
 
     rich_percentage = round(100*len(df[(df['hours-per-week']==min_work_hours) & (df['salary']=='>50K')])/len(df[df['hours-per-week']==min_work_hours]),1)
-    #print(num_min_workers)
+    #print(num_min_workers)caca
 
     # What country has the highest percentage of people that earn >50K?
     highest_earning_country = df.loc[df['salary']=='>50K', 'native-country']
